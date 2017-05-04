@@ -12,7 +12,7 @@ namespace EcommerceApplication.Models
         public Product()
         {
             CartItems = new HashSet<CartItem>();
-            OrderLines = new HashSet<OrderLine>();
+            OrderLines = new HashSet<OrderLine>(); 
         }
 
         public int ProductId { get; set; }
