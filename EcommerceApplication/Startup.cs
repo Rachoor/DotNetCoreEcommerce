@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using EcommerceApplication.DataContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Routing;
 
 namespace EcommerceApplication
 {
@@ -58,6 +59,11 @@ namespace EcommerceApplication
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                // Admin Area route
+                routes.MapRoute(
+                    name: "AdminAreaRoute",
+                    template: "{area:exists}/{controller=Products}/{actions=Index}/{id?}"); 
             });
         }
     }
