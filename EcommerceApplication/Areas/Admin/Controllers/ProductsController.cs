@@ -3,15 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using EcommerceApplication.Services.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using EcommerceApplication.Models;
 
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Route("[area]/[controller]/[action]")]
     public class ProductsController : Controller
     {
+        private readonly IProduct _productRepository;
+        private readonly ICategory _categoryRepository;
+        private readonly UserManager<Customer> _userManager;
+
+        public ProductsController(IProduct productRepository, ICategory categoryRepository, UserManager<Customer> userManager)
+        {
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _userManager = userManager;
+        }
+
         // GET: /<controller>/
         public IActionResult Index()
         {

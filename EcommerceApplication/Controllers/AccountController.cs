@@ -72,15 +72,13 @@ namespace EcommerceApplication.Controllers
 
         #region Login Settings
 
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost]
-        // Login problems maybe
-        public IActionResult Login(LoginViewModel loginVM)
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (ModelState.IsValid)
             {

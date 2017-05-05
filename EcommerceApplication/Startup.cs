@@ -11,6 +11,8 @@ using EcommerceApplication.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
 using EcommerceApplication.Models;
+using EcommerceApplication.Services.Infrastructure;
+using EcommerceApplication.Services.Repository;
 
 namespace EcommerceApplication
 {
@@ -39,6 +41,14 @@ namespace EcommerceApplication
             services.AddIdentity<Customer, ApplicationRole>()
                 .AddEntityFrameworkStores<MyContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IProduct, ProductRepository>();
+            services.AddScoped<ICategory, CategoryRepository>();
+            services.AddScoped<ISubCategory, SubCategoryRepository>();
+            services.AddSingleton<IOrder, OrderRepository>();
+            services.AddScoped<IOrderLine, OrderLineRepository>();
+            services.AddTransient<IPicture, PictureRepository>();
+            services.AddScoped<ICartItem, CartItemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
