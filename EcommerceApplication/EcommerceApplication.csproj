@@ -32,8 +32,12 @@
     <Content Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="wwwroot\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="wwwroot\images\logo_1_small.png" />
-    <Content Include="wwwroot\js\bootstrap.js" />
-    <Content Include="wwwroot\js\bootstrap.min.js" />
+    <Content Include="wwwroot\js\bootstrap.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\js\bootstrap.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\js\custom.js" />
     <Content Include="wwwroot\js\jquery.min.js" />
     <Content Include="wwwroot\js\sidebar-nav.min.js" />

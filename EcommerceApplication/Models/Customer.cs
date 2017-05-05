@@ -17,7 +17,7 @@ namespace EcommerceApplication.Models
             Orders = new HashSet<Order>();
         }
 
-        // public int CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "Customer Name is required")]
         public string CustomerName { get; set; }

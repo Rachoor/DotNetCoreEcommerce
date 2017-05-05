@@ -35,8 +35,7 @@ namespace EcommerceApplication.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel registerVM)
         {
             if (ModelState.IsValid)
@@ -67,6 +66,50 @@ namespace EcommerceApplication.Controllers
             }
 
             return View(registerVM);
+        }
+
+        #endregion
+
+        #region Login Settings
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        // Login problems maybe
+        public IActionResult Login(LoginViewModel loginVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _signInManager.PasswordSignInAsync(
+                    loginVM.Email,
+                    loginVM.Password,
+                    loginVM.RememberMe,
+                    false).Result;
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                }
+            }
+            return View(loginVM);
+        }
+
+        #endregion
+
+        #region Logout
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Home");
         }
 
         #endregion
