@@ -3,11 +3,6 @@
     background: #4F5477;"><a class="logo" href="/"><b><img src="~/images/logo_1_small.png" class="img-circle" alt="home" width="60"></b><span style="color:white"><strong>ECommerce</strong> Application</span></a></div>
     <ul class="nav navbar-top-links navbar-left hidden-xs"></ul>
 
-
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="/Account/Register">Register</a></li>
-        <li><a href="/Account/Login">Log in</a></li>
-    </ul>
-
+    @await Html.PartialAsync("AdminPartials/_TopPartialLoginMenu")
 
 </div>
