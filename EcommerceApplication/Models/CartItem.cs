@@ -27,6 +27,6 @@ namespace EcommerceApplication.Models
 
         public virtual Customer Customers { get; set; }
         public virtual Product Products { get; set; }
-
+        public int CartItemId { get; internal set; }
     }
 }
