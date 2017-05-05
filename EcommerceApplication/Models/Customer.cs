@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace EcommerceApplication.Models
 {
     [Table("Customer")]
-    public class Customer
+    public class Customer: IdentityUser
     {
         public Customer()
         {
@@ -16,8 +17,7 @@ namespace EcommerceApplication.Models
             Orders = new HashSet<Order>();
         }
 
-        [ScaffoldColumn(false)]
-        public int CustomerId { get; set; }
+        // public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "Customer Name is required")]
         public string CustomerName { get; set; }
@@ -33,8 +33,8 @@ namespace EcommerceApplication.Models
         [DataType(DataType.PostalCode)]
         public int PostalCode { get; set; }
 
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        // [EmailAddress]
+        // public string EmailAddress { get; set; }
 
         public DateTime? DateEntered { get; set; }
 
