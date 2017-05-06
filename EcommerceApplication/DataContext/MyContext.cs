@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using EcommerceApplication.Models;
 
 namespace EcommerceApplication.DataContext
 {
@@ -23,5 +25,17 @@ namespace EcommerceApplication.DataContext
         public DbSet<Picture> Picture { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
 
-    }
+        // 'IdentityUserLogin<string>' requires a primary key to be defined.' => Temporary Solution
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Ignore<IdentityUserLogin<string>>();
+            modelBuilder.Ignore<IdentityUserRole<string>>();
+            modelBuilder.Ignore<IdentityUserClaim<string>>();
+            modelBuilder.Ignore<IdentityUserToken<string>>();
+            modelBuilder.Ignore<IdentityUser<string>>();
+            modelBuilder.Ignore<ApplicationRole>();
+        }
+
+        }
 }

@@ -27,6 +27,8 @@ namespace EcommerceApplication.Models
 
         public int? UnitsInStock { get; set; }
 
+        public Boolean IsActive { get; set; }
+
         public byte[] ProductImagePath { get; set; }
 
 

@@ -34,7 +34,9 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var product = _productRepository.GetAll();
+
+            return View(product);
         }
 
         [HttpPost]

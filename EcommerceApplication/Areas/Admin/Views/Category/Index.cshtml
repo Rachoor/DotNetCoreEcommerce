@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="white-box">
             <h3 class="box-title">Blank Starter Page</h3>
-            <a asp-area="Admin" asp-controller="CategoryController" asp-action="Create" class="btn btn-success">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-success">
                 <span class="btn btn-label"><i class="fa fa-check"></i></span>Add New Category
             </a>
         </div>
@@ -42,12 +42,12 @@
                                         <td>@cat.Products.Count</td>
 
                                         <td>
-                                            <a asp-area="Admin" asp-controller="CategoryController" asp-action="Update" 
+                                            <a asp-area="Admin" asp-controller="Category" asp-action="Update" 
                                                asp-route-id="@cat.CategoryId"  class="text-inverse p-r-10" data-toggle="tooltip" 
                                                title="" data-original-title="Update"><i class="glyphicon glyphicon-edit"></i>
                                             </a> 
 
-                                            <a asp-area="Admin" asp-controller="CategoryController" asp-action="Update"
+                                            <a asp-area="Admin" asp-controller="Category" asp-action="Update"
                                                asp-route-id="@cat.CategoryId" class="text-inverse" data-toggle="tooltip"
                                                title="Delete" data-original-title="Delete"><i class="glyphicon glyphicon-trash"></i>
                                             </a> 

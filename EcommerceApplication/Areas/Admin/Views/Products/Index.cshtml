@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<EcommerceApplication.Models.Product>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewBag.Title = "Products Index";
 }
@@ -10,7 +12,7 @@
         <div class="col-md-12">
             <div class="white-box">
                 <h3 class="box-title">PRODUCTS</h3>
-                <a class="btn btn-success" href="/Admin/Products/Create"><span class="btn btn-label"><i class="fa fa-check"></i></span>Add New Product</a>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Create" class="btn btn-success"><span class="btn btn-label"><i class="fa fa-check"></i></span>Add New Product</a>
             </div>
         </div>
     </div>
@@ -34,29 +36,36 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach (var prod in Model)
+                                        {
                                             <tr>
-                                                <td>Tshirt 023</td>
+                                                <td>@prod.ProductName</td>
+                                                <td>@prod.Categories.CategoryName</td>
+
                                                 <td>
+                                                    @if (prod.IsActive == true)
+                                                    {
                                                         <span class="label label-success font-weight-100">Active</span>
-                                                </td>
-                                                <td>
-                                                    <a class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit" href="/Admin/Products/Update?id=1"><i class="glyphicon glyphicon-edit"></i></a>
-                                                    <a class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete" href="/Admin/Products/Delete?id=1"><i class="glyphicon glyphicon-trash"></i></a>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>Tshirt 26</td>
-                                                <td>
+                                                    }
+                                                    else
+                                                    {
                                                         <span class="label label-danger font-weight-100">Deactive</span>
-                                                </td>
-                                                <td>
-                                                    <a class="text-inverse p-r-10" data-toggle="tooltip" title="" data-original-title="Edit" href="/Admin/Products/Update?id=2"><i class="glyphicon glyphicon-edit"></i></a>
-                                                    <a class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete" href="/Admin/Products/Delete?id=2"><i class="glyphicon glyphicon-trash"></i></a>
-                                                </td>
+                                                    }
+                                                    
+                                                    <a asp-area="Admin" asp-controller="Products" asp-action="Update"
+                                                       asp-route-id="@prod.ProductId" class="text-inverse p-r-10" data-toggle="tooltip"
+                                                       title="" data-original-title="Update">
+                                                        <i class="glyphicon glyphicon-edit"></i>
+                                                    </a>
 
+                                                    <a asp-area="Admin" asp-controller="Products" asp-action="Update"
+                                                       asp-route-id="@prod.ProductId" class="text-inverse" data-toggle="tooltip"
+                                                       title="Delete" data-original-title="Delete">
+                                                        <i class="glyphicon glyphicon-trash"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
-
+                                        }
                                     </tbody>
                                 </table>
 

@@ -4,25 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EcommerceApplication.DataContext;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using EcommerceApplication.Models;
 
 namespace EcommerceApplication.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20170504092904_WebApp1")]
-    partial class WebApp1
+    [Migration("20170506080820_TryIsActive")]
+    partial class TryIsActive
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
-            /*base.BuildTargetModel(modelBuilder);
-            modelBuilder.Ignore<IdentityUserLogin<string>>();
-            modelBuilder.Ignore<IdentityUserRole<string>>();
-            modelBuilder.Ignore<IdentityUserClaim<string>>();
-            modelBuilder.Ignore<IdentityUserToken<string>>();
-            modelBuilder.Ignore<IdentityUser<string>>();
-            modelBuilder.Ignore<ApplicationRole>();*/
-
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -31,6 +21,8 @@ namespace EcommerceApplication.Migrations
                 {
                     b.Property<int>("CartId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CartItemId");
 
                     b.Property<int?>("CustomerId");
 
@@ -68,22 +60,50 @@ namespace EcommerceApplication.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AccessFailedCount");
+
                     b.Property<string>("Address1");
 
                     b.Property<string>("Address2");
 
                     b.Property<string>("City");
 
+                    b.Property<string>("ConcurrencyStamp");
+
                     b.Property<string>("CustomerName")
                         .IsRequired();
 
                     b.Property<DateTime?>("DateEntered");
 
-                    b.Property<string>("EmailAddress");
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Id");
 
                     b.Property<string>("LastName");
 
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
                     b.Property<int>("PostalCode");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("CustomerId");
 
@@ -157,6 +177,8 @@ namespace EcommerceApplication.Migrations
                     b.Property<int?>("CategoryId");
 
                     b.Property<string>("Details");
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<int?>("PictureId");
 
