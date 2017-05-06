@@ -18,15 +18,15 @@
                 <li>
                     <a href="javascript:void(0)"><i class="glyphicon glyphicon-file"></i> <span class="hide-menu">Categories<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">2</span></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/Admin/Category/Index">List Of Categories</a></li>
-                        <li><a href="/Admin/Category/Create">Create</a></li>
+                        <li><a asp-area="Admin" asp-controller="Category" asp-action="Index">List Of Categories</a></li>
+                        <li><a asp-area="Admin" asp-controller="Category" asp-action="Create">Create</a></li>
                     </ul>
                 </li>
                 <li class="active">
                     <a href="javascript:void(0)"><i data-icon="" class="glyphicon glyphicon-file"></i> <span class="hide-menu">Products<span class="fa arrow"></span><span class="label label-rouded label-purple pull-right">14</span></span></a>
                     <ul class="nav nav-second-level collapse in">
-                        <li><a href="/Admin/Products/Index" class="active">List Of Products</a></li>
-                        <li><a href="/Admin/Products/Create">Create</a></li>
+                        <li><a asp-area="Admin" asp-controller="Products" asp-action="Index">List Of Products</a></li>
+                        <li><a asp-area="Admin" asp-controller="Products" asp-action="Create">Create</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,108 +1,97 @@
-﻿@{
+﻿@model EcommerceApplication.Areas.Admin.ViewModels.CreateProductViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewBag.Title = "Products Create";
+    ViewBag.Title = "Create Products";
 }
 
-<div class="container-fluid">
+<div class="row m-t-30">
+    <div class="col-md-12">
 
-    <div class="row m-t-30">
-        <div class="col-md-12">
-
-            <div class="panel panel-info">
-                <div class="panel-heading"> Create Product</div>
-                <div class="panel-wrapper" aria-expanded="true">
-                    <div class="panel-body">
-                        <form method="post" enctype="multipart/form-data" action="/Admin/Products/Create">
-                            <div class="form-body">
-                                <h3 class="box-title">Create Product</h3>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Product Name</label>
-                                            <input type="text" class="form-control" data-val="true" data-val-required="The Product Name field is required." id="Products_ProductName" name="Products.ProductName" value="">
-                                        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"> Create Product</div>
+            <div class="panel-wrapper" aria-expanded="true">
+                <div class="panel-body">
+                    <form asp-area="Admin" asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="form-body">
+                            <h3 class="box-title">Create Product</h3>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Product Name</label>
+                                        <input asp-for="Products.ProductName" type="text" class="form-control">
                                     </div>
-                                    <!--/span-->
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="control-label">Unit Price</label>
-                                            <input type="text" class="form-control" data-val="true" data-val-number="The field UnitPrice must be a number." data-val-required="The UnitPrice field is required." id="Products_UnitPrice" name="Products.UnitPrice" value="0">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="control-label">Unit In Stock</label>
-                                            <input type="text" class="form-control" id="Products_UnitsInStock" name="Products.UnitsInStock" value="">
-                                        </div>
-                                    </div>
-                                    <!--/span-->
                                 </div>
-                                <!--/row-->
-                                <!--/row-->
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Category</label>
-                                            <select class="form-control" tabindex="1" id="Products_CategoryId" name="Products.CategoryId">
-                                                <option>Please select one</option>
-                                                <option value="1">Wear</option>
-                                                <option value="2">Children</option>
-                                                <option value="3">Fashion</option>
-                                                <option value="4">Technology</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!--/span-->
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label class="control-label">Status</label>
-                                            <input data-val="true" data-val-required="The IsActive field is required." id="Products_IsActive" name="Products.IsActive" type="checkbox" value="true">Active
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <div class="col-sm-6">
-                                                <input type="file" id="Products_ProductImage" name="Products.ProductImage">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!--/span-->
-                                </div>
-                                <!--/row-->
-
-                                <h3 class="box-title m-t-30">Product Detail</h3>
-
-                                <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group">
-
-                                            <textarea class="form-control" rows="4" id="Products_Details" name="Products.Details"></textarea>
-                                        </div>
+                                <!--/span-->
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Unit Price</label>
+                                        <input asp-for="Products.UnitPrice" type="text" class="form-control">
                                     </div>
                                 </div>
 
-                                <!--/row-->
-                                <hr>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Unit In Stock</label>
+                                        <input asp-for="Products.UnitsInStock" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <!--/span-->
                             </div>
-                            <div class="form-actions m-t-30">
-                                <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                            <!--/row-->
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <select asp-for="Products.CategoryId" asp-items="@(new SelectList(
+                                        Model.Categories,"CategoryId","CategoryName"))" class="form-control" tabindex="1">
+                                            <option>Please select one</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label">Status</label>
+                                        <input type="checkbox" asp-for="Products.IsActive" checked />Active
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div class="col-sm-6">
+                                            <input type="file" asp-for="Products.ProductImage" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/span-->
                             </div>
-                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JtTleRq-w1FlzutVY_FiSColD0t9W35bNYdZxqiWOvHXyWWbZCQenUZxFlSaN-LDgJmBJi3RJ5toFkGVAOkst6Cnk8e80cvetwN7qcbxswRuytyO0wTtYVhnZuuMdWd-HzKZVVOmtMPSO2XoQkKHt4"><input name="Products.IsActive" type="hidden" value="false">
-                        </form>
-                        <div class="validation-summary-valid" data-valmsg-summary="true">
-                            <ul>
-                                <li style="display:none"></li>
-                            </ul>
+                            <!--/row-->
+
+                            <h3 class="box-title m-t-30">Product Detail</h3>
+
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+
+                                        <textarea asp-for="Products.Details" class="form-control" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--/row-->
+                            <hr>
                         </div>
-                    </div>
+                        <div class="form-actions m-t-30">
+                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                        </div>
+                    </form>
+                    <div asp-validation-summary="All"></div>
                 </div>
             </div>
         </div>
-
     </div>
-    <hr>
 
 </div>

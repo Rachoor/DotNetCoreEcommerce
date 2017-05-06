@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EcommerceApplication.Models;
 using EcommerceApplication.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceApplication.Services.Repository
 {
@@ -33,7 +34,7 @@ namespace EcommerceApplication.Services.Repository
 
         public IEnumerable<Product> GetAll()
         {
-            return _db.Product.Select(p => p);
+            return _db.Product.Include(c => c.Categories).Select(p => p);
         }
 
         public Product GetById(int id)

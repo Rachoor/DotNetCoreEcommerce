@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using EcommerceApplication.Services.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using EcommerceApplication.Models;
+using EcommerceApplication.Areas.Admin.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
@@ -17,12 +20,15 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         private readonly IProduct _productRepository;
         private readonly ICategory _categoryRepository;
         private readonly UserManager<Customer> _userManager;
+        private IHostingEnvironment _environment;
 
-        public ProductsController(IProduct productRepository, ICategory categoryRepository, UserManager<Customer> userManager)
+        public ProductsController(IProduct productRepository, ICategory categoryRepository, UserManager<Customer> userManager,
+            IHostingEnvironment environment)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _userManager = userManager;
+            _environment = environment;
         }
 
         // GET: /<controller>/
@@ -36,18 +42,55 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var product = _productRepository.GetAll();
+            var createProduct = new CreateProductViewModel
+            {
+                Products = new Product(),
+                Categories = _categoryRepository.GetAll().ToList()
+            };
 
-            return View();
+            return View(createProduct);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Create(CreateProductViewModel productVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            // Create Image
+
+            if (productVM.Products.ProductImage.Length > 0)
+            {
+                var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+
+                using (var fileStream = new FileStream(Path.Combine
+                    (uploads, productVM.Products.ProductImage.FileName), FileMode.Create))
+                {
+                    productVM.Products.ProductImage.CopyTo(fileStream);
+                }
+                productVM.Products.ProductImagePath = productVM.Products.ProductImage.FileName.ToString();
+            }
+
+            _productRepository.Insert(productVM.Products);
+
+            try
+            {
+                _productRepository.Save();
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Update()
         {
             return View();
         }
 
-        [HttpDelete]
         public IActionResult Delete()
         {
             return View();

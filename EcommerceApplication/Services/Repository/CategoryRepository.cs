@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EcommerceApplication.Models;
 using EcommerceApplication.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceApplication.Services.Repository
 {
@@ -34,7 +35,7 @@ namespace EcommerceApplication.Services.Repository
         // 'IdentityUserLogin<string>' requires a primary key to be defined.'
         public IEnumerable<Category> GetAll()
         {
-            return _db.Category.Select(c => c);
+            return _db.Category.Include(c => c.Products).Select(c => c);
         }
 
         public Category GetById(int id)
