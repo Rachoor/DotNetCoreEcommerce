@@ -28,7 +28,9 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            var product = _productRepository.GetAll();
+
+            return View(product);
         }
 
         [HttpGet]
@@ -36,7 +38,7 @@ namespace EcommerceApplication.Areas.Admin.Controllers
         {
             var product = _productRepository.GetAll();
 
-            return View(product);
+            return View();
         }
 
         [HttpPost]
