@@ -31,16 +31,19 @@ namespace EcommerceApplication.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [HttpPost]
         public IActionResult Update()
         {
             return View();
         }
 
+        [HttpDelete]
         public IActionResult Delete()
         {
             return View();

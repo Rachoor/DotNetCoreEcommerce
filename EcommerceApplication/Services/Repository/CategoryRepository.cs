@@ -31,6 +31,7 @@ namespace EcommerceApplication.Services.Repository
             }
         }
 
+        // 'IdentityUserLogin<string>' requires a primary key to be defined.'
         public IEnumerable<Category> GetAll()
         {
             return _db.Category.Select(c => c);

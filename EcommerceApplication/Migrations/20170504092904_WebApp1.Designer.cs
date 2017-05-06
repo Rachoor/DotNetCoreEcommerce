@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using EcommerceApplication.DataContext;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using EcommerceApplication.Models;
 
 namespace EcommerceApplication.Migrations
 {
@@ -13,6 +15,14 @@ namespace EcommerceApplication.Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
+            /*
+            modelBuilder.Ignore<IdentityUserLogin<string>>();
+            modelBuilder.Ignore<IdentityUserRole<string>>();
+            modelBuilder.Ignore<IdentityUserClaim<string>>();
+            modelBuilder.Ignore<IdentityUserToken<string>>();
+            modelBuilder.Ignore<IdentityUser<string>>();
+            modelBuilder.Ignore<ApplicationRole>();*/
+
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
