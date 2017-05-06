@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Routing;
 using EcommerceApplication.Models;
 using EcommerceApplication.Services.Infrastructure;
 using EcommerceApplication.Services.Repository;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace EcommerceApplication
 {
@@ -67,7 +70,15 @@ namespace EcommerceApplication
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
+            
+            // Using Angular Folder
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"client")),
+                RequestPath = new PathString("/client")
+            });
 
             app.UseIdentity();
 

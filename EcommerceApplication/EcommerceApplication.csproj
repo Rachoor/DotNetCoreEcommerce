@@ -65,6 +65,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Client\app\components\" />
+    <Folder Include="Client\app\shared\" />
+    <Folder Include="Client\theme\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
