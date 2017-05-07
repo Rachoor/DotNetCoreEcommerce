@@ -67,7 +67,6 @@
   <ItemGroup>
     <Folder Include="Client\app\components\" />
     <Folder Include="Client\app\shared\" />
-    <Folder Include="Client\theme\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
