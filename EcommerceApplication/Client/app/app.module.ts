@@ -8,16 +8,18 @@ import { HttpModule } from '@angular/http';
 // Modules
 
 // Services
+import { HttpCommonService } from './shared/services/http-common.service';
 
 // Main
-import { AppComponent } from './components/app.component.ts';
+import { AppComponent } from 'app.component.ts';
 
 // Components
-
+import { CategoryFormComponent } from './components/category-form.component.ts';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { AppComponent } from './components/app.component.ts';
     HttpModule,
   ],
   providers: [
-     
+    HttpCommonService
     ],
   bootstrap: [AppComponent]
 })
