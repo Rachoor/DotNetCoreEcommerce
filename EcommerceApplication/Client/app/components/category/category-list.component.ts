@@ -18,7 +18,7 @@ export class CategoryListComponent {
     constructor(private _httpCommonService: HttpCommonService,
         private flashMessagesService: FlashMessagesService,
         private route: ActivatedRoute) {
-        this.apiName = "admin/categoryNG";
+        this.apiName = "admin/categoryNg";
         this.sub = route.params.subscribe(params => {
             _httpCommonService.getList(this.apiName + "/GetAll").subscribe(data => {
                 this.items = data

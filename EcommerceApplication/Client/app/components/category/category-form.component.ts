@@ -20,7 +20,7 @@ export class CategoryFormComponent {
     constructor(private _httpCommonService: HttpCommonService,
         private flashMessagesService: FlashMessagesService,
         private route: ActivatedRoute) {
-        this.apiName = "admin/categoryNG";
+        this.apiName = "admin/categoryNg";
         this.sub = route.params.subscribe(params => {
             this.id = +params['id']; 
             if (this.id > 0) {

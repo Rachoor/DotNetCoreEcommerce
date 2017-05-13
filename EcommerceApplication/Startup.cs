@@ -70,7 +70,7 @@ namespace EcommerceApplication
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            // app.UseStaticFiles();
+            app.UseStaticFiles();
             
             // Using Angular Folder
             app.UseStaticFiles(new StaticFileOptions()
