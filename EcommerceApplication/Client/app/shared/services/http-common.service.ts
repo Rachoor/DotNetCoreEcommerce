@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Response, ResponseContentType, Headers, RequestOptions, RequestOptionsArgs, Request, RequestMethod, URLSearchParams } from "@angular/http";
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class HttpCommonService {
@@ -12,7 +12,6 @@ export class HttpCommonService {
     }
 
     PostRequest(apiName: string, model: any) {
-
         let headers = new Headers();
         headers.append("Content-Type", 'application/json');
         let requestOptions = new RequestOptions({
@@ -39,11 +38,12 @@ export class HttpCommonService {
         return options;
 
     }
+
     stringifyModel(model: any) {
         return JSON.stringify(model);
     }
-    create(apiName: string, model: any) {
 
+    create(apiName: string, model: any) {
         return this.http.post(this.apiBaseUrl + apiName, model)
             .map(this.extractData)
             .catch(this.handleError);
@@ -63,7 +63,6 @@ export class HttpCommonService {
     }
 
     getItem(apiName: string, id: number) {
-
         return this.http.get(this.apiBaseUrl + apiName + "?id=" + id, { search: null })
             .map((responseData) => responseData.json()).catch(this.handleError);
     }
@@ -72,6 +71,7 @@ export class HttpCommonService {
         let body = res.json();
         return body || {};
     }
+
     private handleError(error: Response | any) {
         let errMsg: string;
         if (error instanceof Response) {
@@ -82,9 +82,6 @@ export class HttpCommonService {
             errMsg = error.message ? error.message : error.toString();
         }
         //console.error(errMsg);
-
-
         return Observable.throw(errMsg);
     }
-
 }

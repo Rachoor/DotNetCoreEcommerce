@@ -11,7 +11,6 @@ import { HttpCommonService } from '../../shared/services/http-common.service';
     styleUrls: ['category-form.component.css']
 })
 export class CategoryFormComponent {
-    //public strDate:string  = "2010-10-25";
     public apiName: string
     protected model = {};
     protected submitted = false;
@@ -23,15 +22,13 @@ export class CategoryFormComponent {
         private route: ActivatedRoute) {
         this.apiName = "admin/categoryNG";
         this.sub = route.params.subscribe(params => {
-            this.id = +params['id']; // (+) converts string 'id' to a number
+            this.id = +params['id']; 
             if (this.id > 0) {
                 _httpCommonService.getItem(this.apiName + "/get", this.id).subscribe(
                     data => {
                         this.model = data;
                     },
                     err => {
-                        // Log errors if any
-                        //  console.log(err);
                         this.showError(err);
                     });
             }
@@ -46,6 +43,7 @@ export class CategoryFormComponent {
     reset() {
         this.id = 0;
         this.model = {};
+
     }
     save() {
         if (this.id > 0) {
@@ -54,41 +52,27 @@ export class CategoryFormComponent {
                     this.showSuccess("updated");
                 },
                 err => {
-                    // Log errors if any
-                    //  console.log(err);
                     this.showError(err);
                 });
         }
         else {
             this._httpCommonService.create(this.apiName + "/create", this.model).subscribe(
                 data => {
-                    //// Emit list event
-                    //EmitterService.get(this.listId).emit(comments);
-                    //// Empty model
-                    //this.model = new Comment(new Date(), '', '');
-                    //// Switch editing status
-                    //if (this.editing) this.editing = !this.editing;
                     this.showSuccess("created");
                 },
                 err => {
-                    // Log errors if any
-                    //  console.log(err);
                     this.showError(err);
                 });
         }
 
-
-
     }
     showError(err: any) {
-        this.flashMessagesService.show(err, { cssClass: 'alert-danger' });//{ cssClass: 'alert-success', timeout: 1000 }
-        //this.flashMessagesService.grayOut(true);
+        this.flashMessagesService.show(err, { cssClass: 'alert-danger' });
         this.submitted = false;
     }
 
     showSuccess(msg: any) {
-        this.flashMessagesService.show(msg, { cssClass: 'alert-success' });//{ cssClass: 'alert-success', timeout: 1000 }
-        //this.flashMessagesService.grayOut(true);
+        this.flashMessagesService.show(msg, { cssClass: 'alert-success' });
         this.submitted = true;
     }
     delete() {
@@ -97,14 +81,7 @@ export class CategoryFormComponent {
                 this.showSuccess("deleted");
             },
             err => {
-                // Log errors if any
-                //  console.log(err);
                 this.showError(err);
             });;
     }
-
-
-
-
 }
-
