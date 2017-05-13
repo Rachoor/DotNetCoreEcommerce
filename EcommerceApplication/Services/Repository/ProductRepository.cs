@@ -34,7 +34,10 @@ namespace EcommerceApplication.Services.Repository
 
         public IEnumerable<Product> GetAll()
         {
-            return _db.Product.Include(c => c.Categories).Select(p => p);
+            var prodCat = _db.Product.Include(c => c.Categories).Select(p => p);
+            return prodCat;
+
+            //return _db.Product.Include(c => c.Categories).Select(p => p);
         }
 
         public Product GetById(int id)
