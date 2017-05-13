@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EcommerceApplication.Controllers
 {
-    public class CategoryController : Controller
+    public class CardController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult CategoryDetail()
         {
             return View();
         }

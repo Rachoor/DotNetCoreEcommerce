@@ -3,19 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using EcommerceApplication.Services.Infrastructure;
 
 namespace EcommerceApplication.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        private readonly IProduct _productRepository;
+        private readonly ICategory _categoryRepository;
+
+        public Product(IProduct productRepository, ICategory categoryRepository) 
         {
-            return View();
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
-        public IActionResult ProductDetail()
+        public IActionResult Index()
         {
-            return View();
+            var products = productRepository.GetAll().ToList();
+            return View(products);
+        }
+
+        public IActionResult ProductDetail( int? id)
+        {
+            if (id==null)
+            {
+                return RedirectToAction("Index");
+                // return RedirectToAction("Home", "Error");
+            }
+            return View(_productRepository.GetById(Convert.ToInt32(id)));
         }
     }
 }
