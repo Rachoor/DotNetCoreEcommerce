@@ -10,4 +10,23 @@ import { FlashMessagesService } from 'angular2-flash-messages';
     styleUrls: ['category-list.component.css']
 })
 export class CategoryListComponent {
+    public apiName: string
+    public items: any;
+    private sub: any;
+    id: number;
+
+    constructor(private _httpCommonService: HttpCommonService,
+        private flashMessagesService: FlashMessagesService,
+        private route: ActivatedRoute) {
+        this.apiName = "admin/categoryNG";
+        this.sub = route.params.subscribe(params => {
+            _httpCommonService.getList(this.apiName + "/GetAll").subscribe(data => {
+                this.items = data
+            });
+        });
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
 }

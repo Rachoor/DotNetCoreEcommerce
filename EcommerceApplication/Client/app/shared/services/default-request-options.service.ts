@@ -11,4 +11,4 @@ export class DefaultRequestOptions extends BaseRequestOptions {
     }
 }
 
-export const requestOptionsProvider = { provide: RequestOptions, useClass: DefaultRequestOptions };
+export const requestOptionsService = { provide: RequestOptions, useClass: DefaultRequestOptions };
