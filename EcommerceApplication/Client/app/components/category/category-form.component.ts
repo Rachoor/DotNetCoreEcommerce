@@ -40,6 +40,23 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
     
       
     ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
+    reset() {
+        this.id = 0;
+        this.model = {};
+    }
+
+    save() {
+        if (this.id>0) {
+            this._httpCommonService.update(this.apiName +"/update", this.model).subscribe(date => {
+                this.showSuccess("updated");
+            },
+                err => {
+                    this.showError(err);
+                });
+        }
     }
 
 }
