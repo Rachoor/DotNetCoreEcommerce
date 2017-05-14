@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using EcommerceApplication.Models;
 using EcommerceApplication.ViewModels;
 using EcommerceApplication.DataContext;
+using EcommerceApplication.Services.Infrastructure;
 
 namespace EcommerceApplication.Controllers
 {
@@ -16,7 +17,7 @@ namespace EcommerceApplication.Controllers
         private readonly UserManager<Customer> _userManager;
         private readonly ICartItem _cartItemRepository;
 
-        public card(MyContext db, UserManager<Customer> userManager, ICartItem cartItemRepository)
+        public CardController (MyContext db, UserManager<Customer> userManager, ICartItem cartItemRepository)
         {
             _db = db;
             _userManager = userManager;
@@ -60,7 +61,7 @@ namespace EcommerceApplication.Controllers
         #region Add to Card
 
         [HttpPost]
-        public IActionResult Add([FormForm] int? id)
+        public IActionResult Add([FromForm] int? id)
         {
             if (id != null)
             {

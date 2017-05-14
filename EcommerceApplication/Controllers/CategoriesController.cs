@@ -12,7 +12,7 @@ namespace EcommerceApplication.Controllers
     {
         private readonly ICategory _categoryRepository;
 
-        public Categories(ICategory categoryRepository)
+        public CategoriesController (ICategory categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

@@ -13,7 +13,7 @@ namespace EcommerceApplication.ViewModels.Card
             CardProductViewModelList = new List<CardProductViewModel>();
         }
         
-        public List<CartProductViewModel> CardProductViewModelList { get; set; }
+        public List<CardProductViewModel> CardProductViewModelList { get; set; }
 
         public decimal CardTotalPrice { get; set; }
 

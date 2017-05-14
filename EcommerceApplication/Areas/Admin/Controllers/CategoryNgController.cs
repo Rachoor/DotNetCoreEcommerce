@@ -23,7 +23,7 @@ namespace EcommerceApplication.Areas.Admin.Controllers
 
         public Models.Category Get(int id)
         {
-            var category = )_categoryRepository.GetById(id);
+            var category = _categoryRepository.GetById(id);
             return category;
         }
 
