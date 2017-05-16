@@ -9,7 +9,10 @@
     "module": "commonjs",
     "target": "es5",
     "suppressImplicitAnyIndexErrors": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+     "typeRoots": [
+        "../node_modules/@types"
+      ]
   },
   "exclude": [
     "node_modules",
